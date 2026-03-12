@@ -32,3 +32,22 @@ class Funcionario(models.Model):
         null=False,
         blank=False
     )
+    
+class Produto(models.Model):
+    nome = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False
+    )
+    
+    descricao = models.TextField(
+        null=True,
+        blank=True
+    )
+    
+    preco = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        null=False,
+        blank=False
+    )
