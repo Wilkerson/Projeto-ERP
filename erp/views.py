@@ -24,3 +24,12 @@ def lista_funcionarios(requisicao: HttpRequest):
     if requisicao.method == 'GET':
         funcionarios = Funcionario.objects.all()
         return render(requisicao, template_name='erp/funcionarios/lista.html', context={'funcionarios': funcionarios})
+    
+def busca_funcionario_por_id(requisicao: HttpRequest, pk: int):
+    if requisicao.method == 'GET':
+        try:
+            funcionario = Funcionario.objects.get(pk=pk)
+        except Funcionario.DoesNotExist:
+            funcionario = None
+            
+        return render(requisicao, template_name='erp/funcionarios/detalhe.html', context={'funcionario': funcionario})

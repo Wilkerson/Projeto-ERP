@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Funcionário - ERP</title>
+</head>
+<body>
+    {% if funcionario %}
+        <h1>Detalhes do Funcionário: {{ funcionario.nome }} {{ funcionario.sobrenome }}</h1>
+
+        <ul>
+            <li><strong>Nome:</strong> {{ funcionario.nome }}</li>
+            <li><strong>Sobrenome:</strong> {{ funcionario.sobrenome }}</li>
+            <li><strong>CPF:</strong> {{ funcionario.cpf }}</li>
+            <li><strong>Email Funcional:</strong> {{ funcionario.email_funcional }}</li>
+            <li><strong>Remuneração:</strong> R$ {{ funcionario.remuneracao }}</li>
+        </ul>
+    {% else %}
+        <p>Funcionário não encontrado.</p>
+    {% endif %}
+</body>
+</html>
