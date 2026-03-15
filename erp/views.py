@@ -19,3 +19,8 @@ def criar_funcionario(requisicao: HttpRequest):
             funcionario = Funcionario(**form.cleaned_data)
             funcionario.save()
             return HttpResponseRedirect(redirect_to='/')
+        
+def lista_funcionarios(requisicao: HttpRequest):
+    if requisicao.method == 'GET':
+        funcionarios = Funcionario.objects.all()
+        return render(requisicao, template_name='erp/funcionarios/lista.html', context={'funcionarios': funcionarios})
