@@ -1,13 +1,12 @@
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
+from django.views.generic import TemplateView
 from erp.forms import FuncionarioForm
 from erp.models import Funcionario
 
-# Create your views here.
-
-def home(requisicao: HttpRequest):
-    if requisicao.method == 'GET':
-        return render(requisicao, template_name='erp/index.html')
+# Create your views here.  
+class HomeView(TemplateView):
+    template_name = 'erp/index.html'
     
 def criar_funcionario(requisicao: HttpRequest):
     if requisicao.method == 'GET':
