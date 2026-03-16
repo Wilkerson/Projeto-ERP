@@ -1,8 +1,9 @@
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from erp.forms import FuncionarioForm
-from erp.models import Funcionario
+from django.views.generic import CreateView, TemplateView
+from django.urls import reverse_lazy
+from erp.forms import FuncionarioForm, ProdutoForm
+from erp.models import Funcionario, Produto
 
 # Create your views here.  
 class HomeView(TemplateView):
@@ -52,3 +53,9 @@ def atualiza_funcionario(requisicao: HttpRequest, pk: int):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(redirect_to=f'/funcionarios/detalhe/{pk}')
+        
+class ProdutoCreateView(CreateView):
+    template_name = 'erp/produtos/novo.html'
+    model = Produto
+    form_class = ProdutoForm
+    success_url = reverse_lazy('erp:home')
