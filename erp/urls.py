@@ -10,5 +10,5 @@ urlpatterns = [
     path('funcionarios/detalhe/<pk>', busca_funcionario_por_id, name='busca_funcionario_por_id'),
     path('funcionarios/atualiza/<pk>', atualiza_funcionario, name='atualiza_funcionario'),
     path('produtos/novo', ProdutoCreateView.as_view(), name='cria_produto'),
-    path('produtos/lista', ProdutoListView.as_view(), name='lista_produtos'),
+    path('produtos/', ProdutoListView.as_view(), name='lista_produtos'),
 ]
