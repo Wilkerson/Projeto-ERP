@@ -33,3 +33,23 @@ def busca_funcionario_por_id(requisicao: HttpRequest, pk: int):
             funcionario = None
             
         return render(requisicao, template_name='erp/funcionarios/detalhe.html', context={'funcionario': funcionario})
+    
+def atualiza_funcionario(requisicao: HttpRequest, pk: int):
+    if requisicao.method == 'GET':
+        try:
+            funcionario = Funcionario.objects.get(pk=pk)
+        except Funcionario.DoesNotExist:
+            funcionario = None
+            
+        form = FuncionarioForm(instance=funcionario)
+        return render(requisicao, template_name='erp/funcionarios/atualiza.html', context={'form': form})
+    elif requisicao.method == 'POST':
+        try:
+            funcionario = Funcionario.objects.get(pk=pk)
+        except Funcionario.DoesNotExist:
+            funcionario = None
+            
+        form = FuncionarioForm(requisicao.POST, instance=funcionario)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(redirect_to=f'/funcionarios/detalhe/{pk}')
