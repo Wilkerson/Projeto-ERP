@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, TemplateView, UpdateView
 from django.urls import reverse_lazy
 from erp.forms import FuncionarioForm, ProdutoForm
-from erp.models import Funcionario, Produto
+from erp.models import Funcionario, Produto, Venda
 
 # Create your views here.  
 class HomeView(TemplateView):
@@ -93,3 +93,9 @@ class ProdutoDeleteView(DeleteView):
             return super().get_object(queryset)
         except Http404:
             return None
+        
+class VendaCreateView(CreateView):
+    model = Venda
+    template_name = 'erp/vendas/novo.html'
+    success_url = reverse_lazy('erp:home')
+    fields = ['produto', 'funcionario']
