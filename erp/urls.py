@@ -1,5 +1,5 @@
 from django.urls import path
-from erp.views import HomeView, ProdutoCreateView, ProdutoListView, atualiza_funcionario, busca_funcionario_por_id, criar_funcionario, lista_funcionarios
+from erp.views import HomeView, ProdutoCreateView, ProdutoListView, ProdutoUpdateView, atualiza_funcionario, busca_funcionario_por_id, criar_funcionario, lista_funcionarios
 
 app_name = 'erp'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('funcionarios/atualiza/<pk>', atualiza_funcionario, name='atualiza_funcionario'),
     path('produtos/novo', ProdutoCreateView.as_view(), name='cria_produto'),
     path('produtos/', ProdutoListView.as_view(), name='lista_produtos'),
+    path('produtos/atualiza/<pk>', ProdutoUpdateView.as_view(), name='atualiza_produto'),
 ]

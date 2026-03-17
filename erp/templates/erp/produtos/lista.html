@@ -12,6 +12,7 @@
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Preço</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,10 @@
                 <td>{{ produto.nome }}</td>
                 <td>{{ produto.descricao }}</td>
                 <td>{{ produto.preco }}</td>
+                <td>
+                   <a href="{% url 'atualiza_produto' produto.id %}">Atualizar</a>
+                   <a href="{% url 'deleta_produto' produto.id %}">Excluir</a> 
+                </td>
             </tr>
             {% endfor %}
         </tbody>
