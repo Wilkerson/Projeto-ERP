@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Vendas - ERP</title>
+</head>
+<body>
+    <h1>Lista de Vendas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Funcionário</th>
+                <th>Produto</th>
+                <th>Data e Hora</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venda in vendas %}
+            <tr>
+                <td>{{ venda.funcionario.nome }} {{ venda.funcionario.sobrenome }}</td>
+                <td>{{ venda.produto.nome }}</td>
+                <td>{{ venda.data_hora }}</td>
+                <td>
+                    <a href="{% url 'erp:detalhe_venda' pk=venda.id %}">Detalhes</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes da Venda - ERP</title>
+</head>
+<body>
+    {% if venda %}
+        <h1>Detalhes da Venda</h1>
+
+        <ul>
+            <li><strong>Produto:</strong> {{ venda.produto.nome }}</li>
+            <li><strong>Funcionário:</strong> {{ venda.funcionario.nome }} {{ venda.funcionario.sobrenome }}</li>
+            <li><strong>Data:</strong> {{ venda.data_hora }}</li>
+        </ul>
+    {% else %}
+        <p>Venda não encontrada.</p>
+    {% endif %}
+</body>
+</html>

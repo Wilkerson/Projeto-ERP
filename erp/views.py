@@ -99,3 +99,19 @@ class VendaCreateView(CreateView):
     template_name = 'erp/vendas/novo.html'
     success_url = reverse_lazy('erp:home')
     fields = ['produto', 'funcionario']
+    
+class VendaListView(ListView):
+    model = Venda
+    template_name = 'erp/vendas/lista.html'
+    context_object_name = 'vendas'
+    
+class VendaDetailView(DetailView):
+    model = Venda
+    template_name = 'erp/vendas/detalhe.html'
+    context_object_name = 'venda'
+    
+    def get_object(self, queryset = None):
+        try:
+            return super().get_object(queryset)
+        except Http404:
+            return None
