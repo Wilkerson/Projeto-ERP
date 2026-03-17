@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletação de Produto - ERP</title>
+</head>
+<body>
+    {% if venda %}
+        <h1>ID:{{ venda.id }} - {{ venda.produto.nome }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <p>Tem certeza que deseja deletar esta venda?</p>
+            <button type="submit">Sim, deletar</button>
+            <a href="{% url 'erp:lista_vendas' %}">Cancelar</a>
+        </form>
+    {% else %}
+        <p>Venda não encontrada.</p>
+    {% endif %}
+</body>
+</html>

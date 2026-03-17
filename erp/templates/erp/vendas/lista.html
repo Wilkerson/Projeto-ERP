@@ -23,6 +23,7 @@
                 <td>{{ venda.data_hora }}</td>
                 <td>
                     <a href="{% url 'erp:detalhe_venda' pk=venda.id %}">Detalhes</a>
+                    <a href="{% url 'erp:deleta_venda' pk=venda.id %}">Deletar</a>
                 </td>
             </tr>
             {% endfor %}
