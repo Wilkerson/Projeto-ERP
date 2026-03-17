@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Produto - ERP</title>
+</head>
+<body>
+    {% if produto %}
+        <h1>Detalhes do Produto: {{ produto.nome }}</h1>
+
+        <ul>
+            <li><strong>Nome:</strong> {{ produto.nome }}</li>
+            <li><strong>Descrição:</strong> {{ produto.descricao }}</li>
+            <li><strong>Preço:</strong> R$ {{ produto.preco }}</li>
+        </ul>
+    {% else %}
+        <p>Produto não encontrado.</p>
+    {% endif %}
+</body>
+</html>

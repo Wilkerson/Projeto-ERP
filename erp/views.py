@@ -1,6 +1,6 @@
-from django.http import HttpRequest, HttpResponseRedirect
+from django.http import Http404, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, TemplateView, UpdateView
+from django.views.generic import CreateView, DetailView, ListView, TemplateView, UpdateView
 from django.urls import reverse_lazy
 from erp.forms import FuncionarioForm, ProdutoForm
 from erp.models import Funcionario, Produto
@@ -55,8 +55,8 @@ def atualiza_funcionario(requisicao: HttpRequest, pk: int):
             return HttpResponseRedirect(redirect_to=f'/funcionarios/detalhe/{pk}')
         
 class ProdutoCreateView(CreateView):
-    template_name = 'erp/produtos/novo.html'
     model = Produto
+    template_name = 'erp/produtos/novo.html'
     form_class = ProdutoForm
     success_url = reverse_lazy('erp:home')
     
@@ -70,3 +70,14 @@ class ProdutoUpdateView(UpdateView):
     form_class = ProdutoForm
     template_name = 'erp/produtos/atualiza.html'
     success_url = reverse_lazy('erp:lista_produtos')
+    
+class ProdutoDetailView(DetailView):
+    model = Produto
+    template_name = 'erp/produtos/detalhe.html'
+    context_object_name = 'produto'
+    
+    def get_object(self, queryset = None):
+        try:
+            return super().get_object(queryset)
+        except Http404:
+            return None
