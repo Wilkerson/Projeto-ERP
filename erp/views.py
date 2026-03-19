@@ -2,8 +2,20 @@ from django.http import Http404, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, TemplateView, UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView, LogoutView
 from erp.forms import FuncionarioForm, ProdutoForm
 from erp.models import Funcionario, Produto, Venda
+
+class ErpLoginView(LoginView):
+    template_name = 'erp/login.html'
+    success_url = reverse_lazy('erp:dashboard')
+    redirect_authenticated_user = True
+    
+class ErpLogoutView(LogoutView):
+    template_name = 'erp/logout.html'
+    
+class DashboardView(TemplateView):
+    template_name = 'erp/dashboard.html'
 
 # Create your views here.  
 class HomeView(TemplateView):

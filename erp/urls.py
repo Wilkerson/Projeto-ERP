@@ -1,11 +1,16 @@
 from django.urls import path
 from core import settings
-from erp.views import HomeView, ProdutoCreateView, ProdutoDeleteView, ProdutoDetailView, ProdutoListView, ProdutoUpdateView, VendaCreateView, VendaDeleteView, VendaDetailView, VendaListView, VendaUpdateView, atualiza_funcionario, busca_funcionario_por_id, criar_funcionario, lista_funcionarios
+from erp.views import DashboardView, ErpLoginView, ErpLogoutView, HomeView, ProdutoCreateView, ProdutoDeleteView, ProdutoDetailView, ProdutoListView, ProdutoUpdateView, VendaCreateView, VendaDeleteView, VendaDetailView, VendaListView, VendaUpdateView, atualiza_funcionario, busca_funcionario_por_id, criar_funcionario, lista_funcionarios
 from django.conf.urls.static import static
 
 app_name = 'erp'
 
 urlpatterns = [
+    #AUTENTICAÇÃO
+    path('login/', ErpLoginView.as_view(), name='login'),
+    path('logout/', ErpLogoutView.as_view(), name='logout'),
+    #ADMIN
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
     #FUNCIONÁRIOS
     path('', HomeView.as_view(), name='home'),
     path('funcionarios', lista_funcionarios, name='lista_funcionarios'),
