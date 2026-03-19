@@ -1,5 +1,7 @@
 from django.urls import path
+from core import settings
 from erp.views import HomeView, ProdutoCreateView, ProdutoDeleteView, ProdutoDetailView, ProdutoListView, ProdutoUpdateView, VendaCreateView, VendaDeleteView, VendaDetailView, VendaListView, VendaUpdateView, atualiza_funcionario, busca_funcionario_por_id, criar_funcionario, lista_funcionarios
+from django.conf.urls.static import static
 
 app_name = 'erp'
 
@@ -23,3 +25,6 @@ urlpatterns = [
     path('vendas/deleta/<pk>', VendaDeleteView.as_view(), name='deleta_venda'),
     path('vendas/atualiza/<pk>', VendaUpdateView.as_view(), name='atualiza_venda'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

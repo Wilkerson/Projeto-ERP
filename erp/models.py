@@ -55,6 +55,12 @@ class Produto(models.Model):
         blank=False
     )
     
+    imagem = models.ImageField(
+        upload_to='imagens-produtos',
+        null=True,
+        blank=True
+    )
+    
     def __str__(self):
         return f'{self.nome} - R$ {self.preco}'
     
