@@ -9,6 +9,7 @@
     <table>
         <thead>
             <tr>
+                <th>Imagem do Produto</th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Preço</th>
@@ -18,6 +19,11 @@
         <tbody>
             {% for produto in produtos %}
             <tr>
+                <td>
+                    {% if produto.imagem %}
+                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" width="100">
+                    {% endif %}
+                </td>
                 <td>{{ produto.nome }}</td>
                 <td>{{ produto.descricao }}</td>
                 <td>{{ produto.preco }}</td>

@@ -9,6 +9,9 @@
         <h1>Deletar Produto: {{ produto.nome }}</h1>
         <form method="post">
             {% csrf_token %}
+            {% if produto.imagem %}
+                <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" width="400">
+            {% endif %}
             <p>Tem certeza que deseja deletar este produto?</p>
             <button type="submit">Sim, deletar</button>
             <a href="{% url 'erp:lista_produtos' %}">Cancelar</a>
